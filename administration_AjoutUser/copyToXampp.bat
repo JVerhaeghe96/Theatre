@@ -1,2 +1,0 @@
-if not exist D:\Programmes\xamp\htdocs\Exercices\Projet\administration\ mkdir D:\Programmes\xamp\htdocs\Exercices\Projet\administration\
-xcopy . D:\Programmes\xamp\htdocs\Exercices\Projet\administration\ /h/i/c/k/e/r/y
