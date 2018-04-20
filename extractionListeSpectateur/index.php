@@ -744,7 +744,7 @@ if(!isset($_SESSION["connection"])){    //  page de connexion
                         <br/>
                         <input class='button' id=\"extractList\" type=\"submit\" value=\"Extraire\"/>
                         <br/><br/>
-                        <a target='_blank' href='' id='lien' style='display:none'>Télécharger le document</a>
+                        <a target='_blank' class='button' href='' id='lien' style='display:none'>Télécharger le document</a>
                     </div>
             ";
         }

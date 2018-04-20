@@ -14,6 +14,7 @@ header("Content-type: text/plain");
 if(!isset($_GET["action"])){
     header("HTTP/1.1 403");
 }else{
+    $j = new \JasperPHP\JasperPHP();
     if($_GET["action"] == "listeReservation" && isset($_POST["date"]) && !empty($_POST["date"])){
         $tab = explode("|", $_POST["date"]);
         $date = $tab[0];
@@ -21,7 +22,6 @@ if(!isset($_GET["action"])){
         $tabHeure = explode(":", $heure);
         $outputFile = "ListeReservation_". $date ."_". $tabHeure[0] ."h". $tabHeure[1];
 
-        $j = new \JasperPHP\JasperPHP();
         $output = $j->process(
             '../jasper_reports/ListeReservations.jasper',
             "../jasper_reports/".$outputFile,
@@ -41,13 +41,13 @@ if(!isset($_GET["action"])){
         else
             header("HTTP/1.1 406");
     }else if($_GET["action"]=="listeSpectateur"){
-        $outputFile = "ListeSpectateur";
+        $outputFile = "listeSpectateur";
 
-        $j = new \JasperPHP\JasperPHP();
         $output = $j->process(
             '../jasper_reports/listeSpectateur.jasper',
             "../jasper_reports/".$outputFile,
             array('pdf'),
+            array(),
             array(
                 'driver' => 'mysql',
                 'username' => 'root',
@@ -61,7 +61,6 @@ if(!isset($_GET["action"])){
             echo $outputFile;
         else
             header("HTTP/1.1 406");
-
     }
 }
 

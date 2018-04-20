@@ -19,7 +19,6 @@ $(document).ready(function(){
                     $("#lien").attr("href", "jasper_reports/"+data+".pdf");
                 }
             );
-
         }
     });
 
