@@ -29,7 +29,7 @@ class ReservationManager extends  AbstractManager
             $stmt->bindValue(":titre", $reservation->getTitre(), PDO::PARAM_STR);
             $ok= $stmt->execute();
         }catch(PDOException $e){
-         //   die($e->getMessage());
+            $ok = false;
         }finally{
             $stmt->closeCursor();
         }

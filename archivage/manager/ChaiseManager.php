@@ -39,7 +39,7 @@ class ChaiseManager extends AbstractManager
 
             $ok = $stmt->execute();
         }catch(PDOException $e){
-            die($e->getMessage());
+            $ok = false;
         }finally{
             $stmt->closeCursor();
         }
@@ -52,7 +52,7 @@ class ChaiseManager extends AbstractManager
      * @return Chaise|null
      */
     function getByIdAndDate($id, $date,$heure){
-        $sql = 'SELECT * FROM chaise WHERE id=:id AND date=:date AND  heure=:heure';
+        $sql = 'SELECT * FROM chaise WHERE id=:id AND date=:date AND heure=:heure';
         $stmt = null;
         $chaise = null;
 
@@ -70,7 +70,7 @@ class ChaiseManager extends AbstractManager
 
             $chaise = new Chaise($result);
         }catch(PDOException $e){
-            die($e->getMessage());
+            $chaise = array();
         }finally{
             $stmt->closeCursor();
         }
@@ -98,7 +98,7 @@ class ChaiseManager extends AbstractManager
 
             $ok = $stmt->execute();
         }catch(PDOException $e){
-            die($e->getMessage());
+            $ok = false;
         }finally{
             $stmt->closeCursor();
         }
@@ -111,7 +111,7 @@ class ChaiseManager extends AbstractManager
      * @return array
      */
     function getAllByDates($date,$heure){
-        $sql = "SELECT date, id, etat, ResId from chaise WHERE date = :date AND  heure=:heure ORDER BY tri ASC";
+        $sql = "SELECT * from chaise WHERE date = :date AND  heure=:heure ORDER BY tri ASC";
         $stmt = null;
         $chaises = array();
 
@@ -128,7 +128,7 @@ class ChaiseManager extends AbstractManager
                 array_push($chaises, new Chaise($chaise));
             }
         }catch(PDOException $e){
-            die($e->getMessage());
+            $chaises = array();
         }finally{
             $stmt->closeCursor();
         }
@@ -137,31 +137,25 @@ class ChaiseManager extends AbstractManager
     }
 
     /**
-     * @param $currentDate String
-     * @param $newDate String
+     * @param Chaise $chaise
      * @return bool
      */
-    function copierPlanSalle($currentDate, $newDate){
-        $sql = "insert into chaise (date, id, etat)
-                select :newDate, id, etat
-                from chaise
-                where date = :currentDate
-                order by tri asc";
+    function copierPlanSalle($chaise){
+        $sql = "insert into chaise (date, heure, id, etat) values (:date, :heure, :id, :etat)";
         $stmt = null;
         $ok = false;
-
-        $currentDate = DateUtils::getDateForPDO(DateUtils::createDateTime($currentDate));
-        $newDate = DateUtils::getDateForPDO(DateUtils::createDateTime($newDate));
 
         try{
             $stmt = $this->db->prepare($sql);
 
-            $stmt->bindValue(":newDate", $newDate, PDO::PARAM_STR);
-            $stmt->bindValue(":currentDate", $currentDate, PDO::PARAM_STR);
+            $stmt->bindValue(":date", $chaise->getDate(), PDO::PARAM_STR);
+            $stmt->bindValue(":heure", $chaise->getHeure(), PDO::PARAM_STR);
+            $stmt->bindValue(":id", $chaise->getId(), PDO::PARAM_STR);
+            $stmt->bindValue(":etat", $chaise->getEtat(), PDO::PARAM_STR);
 
             $ok = $stmt->execute();
         }catch(PDOException $e){
-            die($e->getMessage());
+            $ok = false;
         }finally{
             $stmt->closeCursor();
         }
@@ -170,11 +164,12 @@ class ChaiseManager extends AbstractManager
     }
 
     /**
-     * @param $date String
+     * @param $date
+     * @param $heure
      * @return bool
      */
-    function deleteAllByDate($date){
-        $sql = "DELETE FROM chaise WHERE date = :date";
+    function deleteAllByDate($date, $heure){
+        $sql = "DELETE FROM chaise WHERE date = :date AND heure = :heure";
         $stmt = null;
         $ok = false;
 
@@ -184,10 +179,11 @@ class ChaiseManager extends AbstractManager
             $stmt = $this->db->prepare($sql);
 
             $stmt->bindValue(":date", $date, PDO::PARAM_STR);
+            $stmt->bindValue(":heure", $heure, PDO::PARAM_STR);
 
             $ok = $stmt->execute();
         }catch(PDOException $e){
-            die($e->getMessage());
+            $ok = false;
         }finally{
             $stmt->closeCursor();
         }
@@ -216,7 +212,7 @@ class ChaiseManager extends AbstractManager
             $stmt->bindValue(":ResId", $chaise->getResId(), PDO::PARAM_INT);
             $ok = $stmt->execute();
         }catch(PDOException $e){
-            // die($e->getMessage());
+            $ok = false;
         }finally{
             $stmt->closeCursor();
         }

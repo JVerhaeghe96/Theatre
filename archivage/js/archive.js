@@ -8,6 +8,10 @@ $(document).ready(function(){
             success: function(){
                 $(".alert").hide();
                 $(".alert-success").show();
+            },
+            error: function(){
+                $(".alert").hide();
+                $(".alert-danger").show();
             }
         });
     });

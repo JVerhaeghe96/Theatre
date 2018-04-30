@@ -9,11 +9,13 @@ $(document).ready(function(){
             $(".alert-danger.dateInvalide").show();
         }else{
             $.post("traitements/TraitementSalle.php?action=copier",
-                {dateCopie: dateCopie, currentDate: currentDate})
-                .done(function(){
+                {dateCopie: dateCopie, currentDate: currentDate},
+                function(){
                     $(".alert").hide();
                     $(".alert-success").show();
-            }).fail(function(){
+                }
+            )
+            .fail(function(){
                 $(".alert").hide();
                 $(".alert-danger.copyFailed").show();
             });

@@ -32,8 +32,7 @@ class RepresentationManager extends AbstractManager
             $stmt->bindValue(":titre", $representation->getTitre(), PDO::PARAM_STR);
             $ok= $stmt->execute();
         }catch(PDOException $e){
-            //  Utile pour le test, nocif pour le bon fonctionnement de l'application
-//            die($e->getMessage());
+            $ok = false;
         }finally{
             $stmt->closeCursor();
         }
@@ -53,7 +52,7 @@ class RepresentationManager extends AbstractManager
             $stmt->execute();
             $dates = $stmt->fetchAll();
         }catch(PDOException $e){
-            die($e->getMessage());
+            $dates = array();
         }finally{
             $stmt->closeCursor();
         }
@@ -85,7 +84,7 @@ class RepresentationManager extends AbstractManager
             }
 
         }catch(PDOException $e){
-            die($e->getMessage());
+            $dates = array();
         }finally{
             $stmt->closeCursor();
         }
@@ -113,7 +112,7 @@ class RepresentationManager extends AbstractManager
             }
 
         } catch (PDOException $e) {
-            die($e->getMessage());
+            $dates = array();
         } finally {
             $stmt->closeCursor();
         }

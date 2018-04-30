@@ -14,11 +14,28 @@ if(isset($_GET["action"])){
         $chaiseManager = new ChaiseManager($pdo);
         if($_GET["action"] == "copier"){
             if(isset($_POST["dateCopie"]) && isset($_POST["currentDate"])){
+                $currentDate = explode('|', $_POST["currentDate"])[0];
+                $currentHeure = explode('|', $_POST["currentDate"])[1];
+                $dateCopie = explode('|', $_POST["dateCopie"])[0];
+                $heureCopie = explode('|', $_POST["dateCopie"])[1];
 
                 $pdo->beginTransaction();
 
-                $ok1 = $chaiseManager->deleteAllByDate($_POST["dateCopie"]);
-                $ok2 = $chaiseManager->copierPlanSalle($_POST["currentDate"], $_POST["dateCopie"]);
+                $ok1 = $chaiseManager->deleteAllByDate($dateCopie, $heureCopie);
+
+                $chaises = $chaiseManager->getAllByDates($currentDate, $currentHeure);
+                $ok2 = false;
+                foreach ($chaises as $chaise){
+                    $etat = $chaise->getEtat();
+                    $etat = $etat == 'D' || $etat == 'N' ? $etat : 'D';
+                    $chaise->setEtat($etat);
+                    $chaise->setDate($dateCopie);
+                    $chaise->setHeure($heureCopie);
+
+                    $ok2 = $chaiseManager->copierPlanSalle($chaise);
+                    if(!$ok2)
+                        break;
+                }
 
                 if($ok1 && $ok2){
                     $pdo->commit();

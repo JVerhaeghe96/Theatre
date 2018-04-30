@@ -18,7 +18,10 @@ class ListeManager extends  AbstractManager
     }
 
     /**
-     * @param $spectateur Spectator
+     * @param $spectateur
+     * @param $date
+     * @param $heure
+     * @return array|bool
      */
     function getReservationByNom($spectateur,$date,$heure){
         $sql = "SELECT s.nom,s.prenom, r.id as resId, r.nbSieges,c.id as cId
@@ -42,7 +45,7 @@ class ListeManager extends  AbstractManager
             $result = $stmt->fetchAll();
 
         }catch(PDOException $e){
-            die($e->getMessage());
+            $result = false;
         }finally{
             $stmt->closeCursor();
         }
@@ -71,7 +74,7 @@ class ListeManager extends  AbstractManager
             $result = $stmt->fetchAll();
 
         }catch(PDOException $e){
-            die($e->getMessage());
+            $result = null;
         }finally{
             $stmt->closeCursor();
         }

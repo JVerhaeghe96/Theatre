@@ -33,7 +33,6 @@ echo '
 <head>
     <title>Art et Récréation - index</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" charset="UTF-8"/>
-    <link rel="SHORTCUT ICON" href="image/logo.ico"/>
     <link rel="stylesheet" type="text/css" href="css/style.css"/>
     <link rel="stylesheet" type="text/css" href="lib/jquery-ui-1.12.1.custom/jquery-ui.theme.css"/>
     <link rel="stylesheet" type="text/css" href="lib/jquery-ui-1.12.1.custom/jquery-ui.structure.css"/>
@@ -342,7 +341,7 @@ if(!isset($_SESSION["connection"])){    //  page de connexion
             }
         }elseif(isset($_GET["success"])){
             if($_GET["success"] == "true"){
-                echo "<div class=\"alert alert-success\" role=\"alert\">Nouvelle représentation ajouté !</div>";
+                echo "<div class=\"alert alert-success\" role=\"alert\">Nouvelle représentation ajoutée !</div>";
             }
         }
 

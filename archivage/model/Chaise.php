@@ -8,11 +8,12 @@
 
 class Chaise
 {
-    private $date;
+    private $tri;
     private $id;
+    private $date;
+    private $heure;
     private $etat;
     private $ResId;
-    private $heure;
 
     /**
      * Chaise constructor.
@@ -21,6 +22,22 @@ class Chaise
     function __construct($data)
     {
         $this->fillObject($data);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTri()
+    {
+        return $this->tri;
+    }
+
+    /**
+     * @param mixed $tri
+     */
+    public function setTri($tri)
+    {
+        $this->tri = $tri;
     }
 
     /**

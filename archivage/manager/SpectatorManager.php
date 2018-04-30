@@ -86,7 +86,7 @@ class SpectatorManager
                 array_push($tabMail, $mail["adresseMail"]);
             }
         }catch(PDOException $e){
-
+            $tabMail = array();
         }finally{
             $stmt->closeCursor();
         }
@@ -110,7 +110,7 @@ class SpectatorManager
             $stmt->execute();
             $result = $stmt->fetchAll();
         }catch(PDOException $e){
-            die($e->getMessage());
+            $result = null;
         }finally{
             $stmt->closeCursor();
         }
@@ -157,7 +157,7 @@ class SpectatorManager
             $ok=$stmt->execute();
 
         }catch(PDOException $e){
-            die($e->getMessage());
+            $ok = false;
         }finally{
             $stmt->closeCursor();
         }
@@ -179,14 +179,16 @@ class SpectatorManager
             $ok=$stmt->execute();
 
         }catch(PDOException $e){
-            die($e->getMessage());
+            $ok = false;
         }finally{
             $stmt->closeCursor();
         }
         return $ok;
     }
 
-
+    /**
+     * @return array|null
+     */
     function autocompleteNom(){
 
         $term=$_GET['term'];
@@ -199,13 +201,16 @@ class SpectatorManager
             $stmt->execute();
             $result = $stmt->fetchAll();
         }catch(PDOException $e){
-            die($e->getMessage());
+            $result = null;
         }finally{
             $stmt->closeCursor();
         }
         return $result;
     }
 
+    /**
+     * @return array|null
+     */
     function autocompletePrenom(){
 
         $term=$_GET['term'];
@@ -218,7 +223,7 @@ class SpectatorManager
             $stmt->execute();
             $result = $stmt->fetchAll();
         }catch(PDOException $e){
-            die($e->getMessage());
+            $result = null;
         }finally{
             $stmt->closeCursor();
         }

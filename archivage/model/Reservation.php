@@ -33,7 +33,7 @@ class Reservation
     /**
      * @param mixed $id
      */
-    public function setId($id): void
+    public function setId($id)
     {
         $this->id = $id;
     }
@@ -49,7 +49,7 @@ class Reservation
     /**
      * @param mixed $nbSieges
      */
-    public function setNbSieges($nbSieges): void
+    public function setNbSieges($nbSieges)
     {
         $this->nbSieges = $nbSieges;
     }
@@ -65,7 +65,7 @@ class Reservation
     /**
      * @param mixed $remarque
      */
-    public function setRemarque($remarque): void
+    public function setRemarque($remarque)
     {
         $this->remarque = $remarque;
     }
@@ -81,7 +81,7 @@ class Reservation
     /**
      * @param mixed $SpecId
      */
-    public function setSpecId($SpecId): void
+    public function setSpecId($SpecId)
     {
         $this->SpecId = $SpecId;
     }
@@ -97,7 +97,7 @@ class Reservation
     /**
      * @param mixed $titre
      */
-    public function setTitre($titre): void
+    public function setTitre($titre)
     {
         $this->titre = $titre;
     }

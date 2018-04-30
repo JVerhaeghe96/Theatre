@@ -37,7 +37,7 @@ class AdminManager extends AbstractManager
                 $user = new User($result);
             }
         }catch(PDOException $e){
-            die($e->getMessage());
+            $user = null;
         }finally{
             $stmt->closeCursor();
         }
@@ -63,7 +63,7 @@ class AdminManager extends AbstractManager
                 array_push($users, new User($user));
             }
         }catch(PDOException $e){
-            die($e->getMessage());
+            $users = array();
         }finally{
             $stmt->closeCursor();
         }
@@ -86,7 +86,7 @@ class AdminManager extends AbstractManager
             $stmt->bindValue(":login", $user, PDO::PARAM_STR);
             $stmt->execute();
         }catch(PDOException $e){
-            die($e->getMessage());
+
         }finally{
             $stmt->closeCursor();
         }
@@ -108,7 +108,7 @@ class AdminManager extends AbstractManager
             $stmt->bindValue(":mdp", $mdp, PDO::PARAM_STR);
            $ok= $stmt->execute();
         }catch(PDOException $e){
-            die($e->getMessage());
+            $ok = false;
         }finally{
             $stmt->closeCursor();
         }

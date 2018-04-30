@@ -37,7 +37,7 @@ class SpectacleManager extends AbstractManager
             }
 
         }catch(PDOException $e){
-            die($e->getMessage());
+            $titres = array();
         }finally{
             $stmt->closeCursor();
         }
@@ -62,7 +62,7 @@ class SpectacleManager extends AbstractManager
 
             $success = $stmt->execute();
         }catch(PDOException $e){
-            die($e->getMessage());
+            $success = false;
         }finally{
             $stmt->closeCursor();
         }
@@ -108,14 +108,14 @@ class SpectacleManager extends AbstractManager
      * @return array
      */
     function getAllDataBySpectacle($titre){
-        $sql = "select sp.titre, rep.date, rep.heure, c.tri as chaiseTri, c.id as chaiseId, c.etat, res.id, res.nbSieges, res.remarque, spec.id as specId, spec.nom as specNom, spec.prenom as specPrenom, spec.telFixe, spec.telMobile, spec.adresseMail, spec.commentaire, ad.rue, ad.numero, ad.localite, ad.codePostal
+        $sql = "select sp.titre, rep.date, rep.heure, c.tri as chaiseTri, c.id as chaiseId, c.etat, res.id as resId, res.nbSieges, res.remarque, spec.id as specId, spec.nom as specNom, spec.prenom as specPrenom, spec.telFixe, spec.telMobile, spec.adresseMail, spec.commentaire, ad.rue, ad.numero, ad.localite, ad.codePostal
                 from spectacle as sp
                 inner join representation as rep on rep.titre = sp.titre
                 inner join chaise as c on c.date = rep.date
                 inner join chaise on c.heure = rep.heure
-                inner join reservations as res on res.id = c.ResId
-                inner join spectateurs as spec on spec.id = res.SpecId
-                inner join adresse as ad on ad.id = spec.id
+                left join reservations as res on res.id = c.ResId
+                left join spectateurs as spec on spec.id = res.SpecId
+                left join adresse as ad on ad.id = spec.id
                 where sp.titre = :titre
                 group by c.id, c.date, c.heure
                 order by c.tri";
@@ -136,5 +136,126 @@ class SpectacleManager extends AbstractManager
         }
 
         return $result;
+    }
+
+    /**
+     * @param int $id
+     * @return bool
+     */
+    function deletePersonnelById($id){
+        $sql = "delete from personnel where id = :id";
+        $stmt = null;
+        $ok = false;
+
+        try{
+            $stmt = $this->db->prepare($sql);
+
+            $stmt->bindValue(":id", $id, PDO::PARAM_INT);
+
+            $ok = $stmt->execute();
+        }catch(PDOException $e){
+            $ok = false;
+        }finally{
+            $stmt->closeCursor();
+        }
+
+        return $ok;
+    }
+
+    /**
+     * @param Representation $representation
+     * @return bool
+     */
+    function deleteChaiseByRepresentation($representation){
+        $sql = "delete from chaise where date = :date and heure = :heure";
+        $stmt = null;
+        $ok = false;
+
+        try{
+            $stmt = $this->db->prepare($sql);
+
+            $stmt->bindValue(":date", $representation->getDate(), PDO::PARAM_STR);
+            $stmt->bindValue(":heure", $representation->getHeure(), PDO::PARAM_STR);
+
+            $ok = $stmt->execute();
+        }catch(PDOException $e){
+            $ok = false;
+        }finally{
+            $stmt->closeCursor();
+        }
+
+        return $ok;
+    }
+
+    /**
+     * @param String $titre
+     * @return bool
+     */
+    function deleteRepresentationBySpectacle($titre){
+        $sql = "delete from representation where titre = :titre";
+        $stmt = null;
+        $ok = false;
+
+        try{
+            $stmt = $this->db->prepare($sql);
+
+            $stmt->bindValue(":titre", $titre, PDO::PARAM_STR);
+
+            $ok = $stmt->execute();
+        }catch(PDOException $e){
+            $ok = false;
+        }finally{
+            $stmt->closeCursor();
+        }
+
+        return $ok;
+    }
+
+    /**
+     * @param String $titre
+     * @return bool
+     */
+    function deleteReservationBySpectacle($titre){
+        $sql = "delete from reservations where titre = :titre";
+        $stmt = null;
+        $ok = false;
+
+        try{
+            $stmt = $this->db->prepare($sql);
+
+            $stmt->bindValue(":titre", $titre, PDO::PARAM_STR);
+
+            $ok = $stmt->execute();
+        }catch(PDOException $e){
+            $ok = false;
+        }finally{
+            $stmt->closeCursor();
+        }
+
+        return $ok;
+    }
+
+    /**
+     * @param String $titre
+     * @return bool
+     */
+    function deleteSpectacle($titre){
+        $sql = "delete from spectacle where titre = :titre";
+        $stmt = null;
+        $ok = false;
+
+        try{
+            $stmt = $this->db->prepare($sql);
+
+            $stmt->bindValue(":titre", $titre, PDO::PARAM_STR);
+
+            $ok = $stmt->execute();
+        }catch(PDOException $e){
+            $ok = false;
+        }finally{
+            $stmt->closeCursor();
+        }
+
+        return $ok;
     }
 }
