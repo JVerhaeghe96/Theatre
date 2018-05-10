@@ -1,0 +1,497 @@
+﻿html {
+	background-color: #DDD6A5;
+	z-index: 10;
+}
+
+/* Header */
+.logo{
+	width: 850px;
+	height: 480px;
+	margin: auto;/* centrer le slideshow */
+	position: relative;
+	overflow: hidden;
+	border-radius: 15em/1.2em;
+	border: solid #9C9354;
+	box-shadow: 0 0 5px;
+	background-color: #ffff88;
+	text-align: center;/* centrer l'image */
+}
+
+.imglogo {
+	width: 400px;
+	height: auto;
+	margin-top:30px;
+}
+
+/* Menu principal */
+#menu, #menu ul {
+	padding: 0;
+	margin: 0;
+	list-style: none;
+	line-height: 30px; /* on centre le texte verticalement */
+	text-align: center;
+}
+#menu li {
+	float: left;
+}
+
+/* Sous-menu */
+#menu li ul {
+	position: absolute;
+	width: 0px; /* Largeur pour mettre les uns en dessous de l'autre */
+    visibility: hidden;
+}
+
+/* Au survol du menu afficher le sous menu */ 
+#menu li:hover ul {
+	visibility: visible;
+}
+
+/* Au survol des liens */ 
+#menu a:hover {
+	color: #000;
+}
+/* Les liens */
+#menu a {
+	display: block;
+	background-color: #E06208;
+	color: #fff;
+	text-decoration: none;
+	width: 220px;
+	height: 38px;
+	border: 1px black solid;
+	font-size: 20px;
+}
+
+/* Au survol des liens */
+#menu a:hover {
+	color: #000;
+}
+
+/* Contenu */
+#content{
+	width: 1000px;
+	margin-top: 60px;
+	margin-left: 110px;
+	border: 1px black solid;
+	background-color: #ffff88;
+	padding-top: 20px;
+	padding-left: 300px;
+	padding-right: 50px;
+	padding-bottom: 20px;
+	text-align: justify;
+}
+
+.content2{
+	background-color: #DDD6A5;
+	margin-top: 60px;
+	margin-left: 300px;
+	padding-top: 50px;
+	padding-left: 250px;
+	border: 1px black solid;
+	width:50%;
+	height:200px;
+}
+
+.content3{
+	background-color: #DDD6A5;
+	margin-top: 60px;
+	margin-left: 20px;
+	padding-top:100px;
+	padding-left: 250px;
+	border: 1px black solid;
+	width:50%;
+	height:250px;
+}
+
+#formSpectateur, #formListe {
+	text-align: left;
+	padding-top: 50px;
+	padding-left: 150px;
+	margin-left: 70px;
+	height: 200px;
+}
+
+.contentSpectacle{
+	background-color: #DDD6A5;
+	margin-top: 60px;
+	margin-left: 30px;
+	padding-top: 60px;
+	padding-left: 100px;
+	border: 1px black solid;
+	width:60%;
+	height:160px;
+	visibility: visible;
+}
+.contentMail {
+	background-color: #DDD6A5;
+	margin-top: 60px;
+	margin-left: 100px;
+	padding-top: 20px;
+	padding-left: 50px;
+	border: 1px black solid;
+	width:50%;
+	height:150px;
+}
+
+
+
+.contentForm {
+	background-color: #DDD6A5;
+	margin-top: 60px;
+	margin-left: 100px;
+	padding-left: 50px;
+	padding-top: 20px;
+	border: 1px black solid;
+	width:50%;
+	height:500px;
+}
+
+#imgTouteBoite {
+	margin-top: 30px;
+	margin-left: -80px;
+}
+
+/* Mise en forme du texte */
+h1 {
+	margin-top: 20px;
+	margin-left: 300px;
+	font-size: 35px;
+	text-decoration: underline;
+	color: #787746;
+}
+
+#titreSalle{
+	margin-left:280px;
+}
+
+#titreSpect{
+	margin-left:230px;
+}
+
+#titreListe{
+	margin-left:330px;
+}
+
+#titreExtraction{
+	margin-left:240px;
+}
+
+#titreReservation{
+	margin-left:215px;
+}
+
+#titreSpectacle{
+	margin-left:260px;
+}
+
+/*bouton*/
+button, .bouton {
+	color: white;
+	background-color: #E06208;
+	margin: 10px 20px;
+	font-size: 18px;
+}
+
+#bouton{
+	color: white;
+	background-color: #E06208;
+	font-size: 18px;
+	margin-top:25px;
+	margin-right:150px;
+}
+
+#boutonrech, #boutonReserver,#boutonAddRang{
+	color: white;
+	background-color: #E06208;
+	font-size: 18px;
+	margin-top:5px;
+	margin-left:0px;
+}
+
+#boutonAddRang{
+	margin-top:15px;
+	margin-left:270px;
+}
+#boutonAdd{
+	position:absolute;
+	color: white;
+	background-color: #E06208;
+	font-size: 18px;
+	margin-top:5px;
+	margin-left:350px;
+	margin-top:-25px;
+}
+
+/* Tableau */
+table {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+caption {
+	text-align: center;
+	font-size: 35px;
+	color: #787746;
+}
+
+table, th, td {
+	border: 5px solid  #9C9354;
+	text-align: center;
+	font-size: 20px;
+	margin-left:-100px;
+}
+
+.tabSalle{
+	margin-top: 50px;
+}
+
+.tabSalle td{
+	height: 60px;
+	transform: translateY(-10%);	/* alignement vertical */
+}
+
+.tabSalle input{
+	border-radius: 50%;
+	width: 30px;
+	height: 30px;
+	background-color: white;
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.legende{
+	margin-left: 60px;
+}
+.add {
+	color: green;
+}
+
+.remove {
+	color: red;
+}
+
+th {
+	color: #787746;
+}
+
+/* Formulaire */
+
+label {
+	display: block;
+	width: 200px;
+	float: left;
+	font-size: 18px;
+}
+
+textarea {
+	height: 40px;
+}
+
+#formNewUser{
+	display: none;
+	position: fixed;
+	border: solid gray 4px;
+	border-radius: 20px;
+	width: 500px;
+	padding-left: 100px;
+	padding-top: 50px;
+	padding-bottom: 20px;
+	background-color: #ffff88;
+	left: 400px;
+	bottom: 250px;
+	z-index: 510;
+}
+
+#closeButton{
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+
+.radioButton {
+	margin-right: 35px;
+}
+
+#addPersonnage {
+	position: absolute;
+	margin-left: 350px;
+	margin-top: 120px;
+}
+
+#addActeur {
+	position: absolute;
+	margin-left: 350px;
+	margin-top: 205px;
+}
+
+#etatSelect{
+	border: solid black 2px;
+}
+
+#personnage{
+	display: none;
+}
+
+.content2.salle.reservationbis{
+	padding-left: 80px;
+	width : 400px;
+	height: 150px;
+}
+
+/* footer */
+footer {
+	margin-top: 10%;/* Pour que le footer reste en bas */
+	height: 40px;
+	background-color: #E06208;
+	color: #fff;
+	text-align: center;
+	line-height: 55px;
+}
+
+.footer{
+	margin-right:200px;
+
+}
+
+
+/*	modal	*/
+
+
+#modal{
+	width: 100%;
+	height: 200%;
+	background-color: black;
+	opacity: 0.8;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	z-index: 500;
+	display: none;
+}
+
+/*Responsive design*/
+@media all and (max-width:1920px) {
+	#menu {
+		margin-left: 280px;
+	}
+	#menu a {
+		width: 188px;
+	}
+	#content{
+		margin-left: 300px;
+		width: 950px;
+	}
+	h1{
+		margin-left:250px ;
+	}
+	.content2{
+		margin-left: -5px;
+	}
+	
+	.salle{
+		margin-left: 100px;
+		padding-top: 40px;
+		padding-left: 100px;
+		width: 40%;
+		height: 120px;
+	}
+	
+	.reservation{
+		height : 180px;
+	}
+	.reservationbis{
+		height: 240px;
+	}
+
+	.footer{
+		margin-right: 220px;
+	}
+	#navigation {
+		position: absolute;
+		margin-left: -17%;
+		margin-top: 10%;
+		list-style: none;
+	}
+	
+	#acteur.formAdd {
+		height: 220px;
+	}
+	
+	.formAdd {
+		width: 400px;
+		margin-left: 130px;
+		padding-left: 50px;
+	}
+	
+	#addActeurDB, #addRepresentation, #addPersonnageDB {
+		margin-left: 150px;
+	}
+}
+
+@media all and (max-width:1600px) {
+	#menu {
+		margin-left: 125px;
+	}
+	#menu a {
+		width: 188px;
+	}
+	#content{
+		margin-left: 140px;
+		width: 950px;
+	}
+	#navigation {
+		position: absolute;
+		margin-left: -19%;
+		margin-top: 10%;
+		list-style: none;
+	}
+}
+
+@media all and (max-width:1366px) {
+	#menu {
+		margin-left: 0px;
+	}
+	#menu a {
+		width: 188px;
+	}
+	#content{
+		margin-left: 20px;
+		width: 950px;
+	}
+	#navigation {
+		position: absolute;
+		margin-left: -22%;
+		margin-top: 10%;
+		list-style: none;
+	}
+}
+
+@media all and (max-width:1281px) {
+	#menu a {
+		width: 205px;
+	}
+	#content{
+		margin-left: 75px;
+	}
+}
+@media all and (max-width:1024px) {
+	#menu a {
+		width: 163px;
+	}
+	#content{
+		width: 885px;
+		margin-left: 1px;
+	}
+}
+
+@media all and (max-width:800px) {
+	#menu a {
+		width: 125px;
+	}
+	#content {
+		width: 660px;
+		margin-left: 2px;
+	}
+}
+
