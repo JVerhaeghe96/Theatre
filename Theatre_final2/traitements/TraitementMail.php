@@ -32,15 +32,6 @@ if(!isset($_POST["message"])){
             }
         }
 
-        //  récupérer l'email de l'expéditeur
-        $handle = fopen("../utils/from_mail.txt", 'r');
-        $from_mail = fread($handle, filesize("../utils/from_mail.txt"));
-        fclose($handle);
-
-        //  récupérer le nom de l'expéditeur
-        $handle = fopen("../utils/from_name.txt", 'r');
-        $from_name = fread($handle, filesize("../utils/from_name.txt"));
-        fclose($handle);
 
         // récupérer toutes les adresses mail des spectateurs
         $spectateurManager = new SpectatorManager($pdo);
@@ -49,8 +40,8 @@ if(!isset($_POST["message"])){
         $message = htmlspecialchars($_POST["message"]);
 
         // mail
-        if(!MailUtils::sendMail($fichiers, $from_mail,
-            $from_name, null,
+        if(!MailUtils::sendMail($fichiers, "jujuver96@gmail.com",
+            "julien verhaeghe", "jujuver96@gmail.com",
             $message, "Test", $mailsSpectateurs)){
             header("HTTP/1.1 403");
         }
