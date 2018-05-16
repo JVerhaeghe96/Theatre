@@ -531,7 +531,7 @@ if(!isset($_SESSION["connection"])){    //  page de connexion
                         <div class=\"alert alert-danger zeroChaiseSelect\" style='display:none' role=\"alert\">Aucune place n'a été sélectionnée</div>
                         <div class=\"alert alert-warning limitReached\" style='display:none' role=\"alert\">Le nombre de places demandées a été atteint</div>
                         <div class=\"content3 salle reservationbis\">
-                            <input type='hidden' id='titreSelect' value='" . $_POST['titre'] . "'/>
+                            <input type='hidden' id='titreSelect' value=\"" . $_POST['titre'] . "\"/>
                             <input type='hidden' id='dateSelect' value='" . $date . "'/>
                             <input type='hidden' id='heureSelect' value='" . $heure . "'/>
                             <label for=\"nom\">Nom de la personne :</label>

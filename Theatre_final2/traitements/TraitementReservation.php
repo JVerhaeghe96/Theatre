@@ -57,7 +57,6 @@ if(isset($_GET["action"])){
                 $id=$pdo->lastInsertId(); // récupérer l'id du dernier élément inséré dans la DB
 
                 if($ok1){
-
                     //changer l'état d'une chaise
                     foreach($_POST["tabPlaces"] as $places){
                         $chaise=new Chaise($places);
