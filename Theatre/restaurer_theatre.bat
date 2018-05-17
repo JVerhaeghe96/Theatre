@@ -1,0 +1,1 @@
+mysql --host=localhost -u marine -pmarine theatre < theatre.sql
